@@ -70,6 +70,8 @@
             android:layout_height="90dp"
             android:background="@android:color/holo_red_dark"
             android:padding="0dp"
+            android:tag="1"
+            android:textSize="36sp"
             android:visibility="visible" />
 
         <Button
@@ -78,6 +80,8 @@
             android:layout_height="90dp"
             android:background="@android:color/holo_purple"
             android:padding="0dp"
+            android:tag="2"
+            android:textSize="36sp"
             android:visibility="visible" />
 
         <Button
@@ -86,6 +90,8 @@
             android:layout_height="90dp"
             android:background="@android:color/holo_blue_dark"
             android:padding="0dp"
+            android:tag="3"
+            android:textSize="36sp"
             android:visibility="visible" />
 
         <Button
@@ -94,6 +100,8 @@
             android:layout_height="90dp"
             android:background="@android:color/holo_green_dark"
             android:padding="0dp"
+            android:tag="4"
+            android:textSize="36sp"
             android:visibility="visible" />
 
     </GridLayout>

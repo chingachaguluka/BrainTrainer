@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
     TextView challengeTextView = null;
     TextView scoreTextView = null;
     GridLayout gridLayout = null;
-    //Button button1 = null;
-    //Button button2 = null;
-    //Button button3 = null;
-    //Button button4 = null;
+    Button button1 = null;
+    Button button2 = null;
+    Button button3 = null;
+    Button button4 = null;
     TextView feedbackTextView = null;
     Button playAgainButton = null;
     Button goButton = null;
@@ -30,12 +32,36 @@ public class MainActivity extends AppCompatActivity {
     int result = 0;
 
     public void createChallenge() {
-        int firstNum = r.nextInt(20) + 1;
-        int secondNum = r.nextInt(20) + 1;
+
+        //subroutine to create challenge and setup answers in the four buttons
+        int firstNum = r.nextInt(60) + 30;
+        int secondNum = r.nextInt(60) + 30;
         String resultText = "";
 
+        List<String> dummyResult = new ArrayList<String>();
+
         result = firstNum + secondNum;
+        resultText = Integer.toString(result);
         challengeTextView.setText(String.valueOf(firstNum) + " + " + String.valueOf(secondNum));
+
+        for(int cnt = 0; cnt < 4; cnt++) {
+            dummyResult.add(Integer.toString(r.nextInt(50) + result - 2));
+        }
+
+        int correctPosition = r.nextInt(3) + 0;
+        dummyResult.set(correctPosition, resultText);
+
+        /*
+        for (int cnt = 0; cnt < 4; cnt++) {
+            Log.i("Results", dummyResult.get(cnt));
+        }
+        */
+        //Log.i("Correct Result", resultText);
+
+        button1.setText(dummyResult.get(0));
+        button2.setText(dummyResult.get(1));
+        button3.setText(dummyResult.get(2));
+        button4.setText(dummyResult.get(3));
 
 
 
@@ -99,10 +125,10 @@ public class MainActivity extends AppCompatActivity {
         challengeTextView = findViewById(R.id.challengeTextView);
         scoreTextView = findViewById(R.id.scoreTextView);
         gridLayout = findViewById(R.id.gridLayout);
-        //button1 = findViewById(R.id.button1);
-        //button2 = findViewById(R.id.button2);
-        //button3 = findViewById(R.id.button3);
-        //button4 = findViewById(R.id.button4);
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
+        button4 = findViewById(R.id.button4);
         feedbackTextView = findViewById(R.id.feedbackTextView);
         playAgainButton = findViewById(R.id.playAgainButton);
         goButton = findViewById(R.id.goButton);
