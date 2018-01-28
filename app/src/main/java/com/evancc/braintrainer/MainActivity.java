@@ -30,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     CountDownTimer countDownTimer = null;
     Random r = new Random();
     int result = 0;
+    int correctPosition = 0;
+    int totalQuestions = 0;             //Total number of questions attempted
+    int correctAnswers = 0;           //Total number of correct answers
+
+
 
     public void createChallenge() {
 
@@ -48,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             dummyResult.add(Integer.toString(r.nextInt(50) + result - 2));
         }
 
-        int correctPosition = r.nextInt(3) + 0;
+        correctPosition = r.nextInt(3) + 0;
         dummyResult.set(correctPosition, resultText);
 
         /*
@@ -69,9 +74,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void resetGame(View view) {
         feedbackTextView.setText("");
+        scoreTextView.setText("0/0");
         playAgainButton.setVisibility(View.INVISIBLE);
         createChallenge();
         startCountDownTimer();
+        totalQuestions = 0;
+        correctAnswers = 0;
 
 
     }
@@ -114,6 +122,21 @@ public class MainActivity extends AppCompatActivity {
         showControls();
         createChallenge();
         startCountDownTimer();
+    }
+
+    public void answerButtonClick(View view) {
+        totalQuestions++;
+        //Log.i("Clicked Button", view.getTag().toString());
+        //Log.i("Correct Position", Integer.toString(correctPosition));
+
+        if (Integer.parseInt(view.getTag().toString()) == correctPosition) {
+            feedbackTextView.setText("Correct :)");
+            correctAnswers++;
+        } else {
+            feedbackTextView.setText("Wrong :(");
+        }
+        scoreTextView.setText(Integer.toString(correctAnswers) + "/" + Integer.toString(totalQuestions));
+        createChallenge();
     }
 
     @Override
