@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView countDownTextView = null;
@@ -24,6 +26,29 @@ public class MainActivity extends AppCompatActivity {
     Button goButton = null;
 
     CountDownTimer countDownTimer = null;
+    Random r = new Random();
+    int result = 0;
+
+    public void createChallenge() {
+        int firstNum = r.nextInt(20) + 1;
+        int secondNum = r.nextInt(20) + 1;
+        String resultText = "";
+
+        result = firstNum + secondNum;
+        challengeTextView.setText(String.valueOf(firstNum) + " + " + String.valueOf(secondNum));
+
+
+
+    }
+
+    public void resetGame(View view) {
+        feedbackTextView.setText("");
+        playAgainButton.setVisibility(View.INVISIBLE);
+        createChallenge();
+        startCountDownTimer();
+
+
+    }
 
     public void startCountDownTimer() {
         countDownTimer = new CountDownTimer(30000, 1000) {
@@ -38,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 countDownTextView.setText("0s");
                 feedbackTextView.setText("Time's Up!");
                 feedbackTextView.setVisibility(View.VISIBLE);
+                playAgainButton.setVisibility(View.VISIBLE);
             }
         };
         countDownTimer.start();
@@ -60,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startGame(View view) {
         showControls();
+        createChallenge();
         startCountDownTimer();
     }
 
